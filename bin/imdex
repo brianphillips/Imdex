@@ -1,0 +1,99 @@
+#!/usr/bin/env perl
+
+# PODNAME: imdex
+# ABSTRACT: Index and search your photos
+
+use Imdex;
+Imdex->run;
+
+=head1 SYNOPSIS
+	
+	# index pictures in a given directory
+	imdex index ~/Pictures/*.jpg
+
+	# search pictures (full-text search of caption, tags and people)
+	imdex search [keywords]
+
+	# returns list of image files tagged "food" AND "vacation"
+	imdex search --tag food --tag vacation
+
+	# returns list of all photos from my road-trip with Kevin Bacon
+	imdex search --person "Brian Phillips" --people "Kevin Bacon" --tag vacation
+
+	# returns list of all photos taken last weekend
+	imdex search --after 'last Friday at 5pm' --before 'last Monday'
+
+	# returns list of all trees that (presumably) have dark green foliage
+	imdex search --color DarkGreen tree
+
+	# show information on a specific image in the index
+	imdex info /path/to/Pictures/DSCF1000.JPG
+
+	# show information on all matched photos
+	imdex search --color DarkGreen tree | xargs imdex info
+
+=head1 DESCRIPTION
+
+This application provides indexing and searching capabilities for your
+personal photo library.  The built-in functionality is specifically
+targetted towards a photo library that is managed by Picasa and how
+that photo management application stores its captions, tags and name
+information.
+
+B<Important:> For name tags, make sure that you have selected the "Store Name Tags in
+Photo" option (introduced in Picasa 3.9) as this application will not
+read any of the C<.picasa.ini> files that were previously used to store
+that information.
+
+The program can be invoked like so:
+
+	% imdex [global options] [sub-command] [sub-command-options] [sub-command-arguments]
+
+Running the C<imdex> executable with no sub-command will output a help screen
+listing the available commands.  You may also use the C<help> sub-command
+to get specific help for any of the sub-commands available.  For instance:
+
+	% imdex help search
+
+=head1 GLOBAL OPTIONS
+
+=over 4
+
+=item * C<-d> or C<--database>
+
+This tells C<imdex> where to find the SQLite database it uses for its
+indexing/searching operations.  By default, this will be in your home
+directory (i.e. C<~/.imdex.db>) and will be created the first time the
+C<index> operation is run.
+
+=back
+
+=head1 SUB-COMMANDS
+
+=over 4
+
+=item * index
+
+This command will index the list of files specified on the command-line.
+It does not currently doing any directory recursion so you will need to
+pair this up with C<find> or some other utility that will do that for you.
+See L<Imdex::Command::index> for more information.
+
+=item * search
+
+Naturally, this command will search the index built by the C<index>
+command. Various arguments are supported as demonstrated in the
+C<SYNOPSIS> above as well as the L<Imdex::Command::search> documentation.
+
+=item * info
+
+This command dumps out the indexed information for files specified on
+the command line.  See L<Imdex::Command::info> for more information.
+
+=item * clean
+
+Removes the Imdex database.  See L<Imdex::Command::clean> for more information.
+
+=back
+
+=cut
