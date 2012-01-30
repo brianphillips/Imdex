@@ -96,4 +96,19 @@ Removes the Imdex database.  See L<Imdex::Command::clean> for more information.
 
 =back
 
+=head1 TODO
+
+=over 4
+
+=item * Support for a persistent config file to avoid needing to specify
+where the database is located with every invocation
+
+=item * Improve (and optimize) color grouping/recognition process
+
+=item * Provide more flexible query options
+
+=item * Implement duplicate image checking
+
+=back
+
 =cut
