@@ -1,4 +1,10 @@
 package Imdex::Command::info;
+BEGIN {
+  $Imdex::Command::info::AUTHORITY = 'cpan:BPHILLIPS';
+}
+{
+  $Imdex::Command::info::VERSION = '0.001';
+}
 
 use strict;
 use warnings;
@@ -39,6 +45,18 @@ _IMG_
 
 1;
 
+
+__END__
+=pod
+
+=head1 NAME
+
+Imdex::Command::info - Displays information for images in the Imdex database
+
+=head1 VERSION
+
+version 0.001
+
 =head1 SYNOPSIS
 
 	# shows information on files that have been indexed by imdex
@@ -58,4 +76,16 @@ _IMG_
 
 =back
 
+=head1 AUTHOR
+
+Brian Phillips <bphillips@cpan.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2012 by Brian Phillips.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
 =cut
+

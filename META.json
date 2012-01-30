@@ -1,0 +1,59 @@
+{
+   "abstract" : "Index and search your photos",
+   "author" : [
+      "Brian Phillips <bphillips@cpan.org>"
+   ],
+   "dynamic_config" : 0,
+   "generated_by" : "Dist::Zilla version 4.300002, CPAN::Meta::Converter version 2.112150",
+   "license" : [
+      "perl_5"
+   ],
+   "meta-spec" : {
+      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+      "version" : "2"
+   },
+   "name" : "Imdex",
+   "prereqs" : {
+      "configure" : {
+         "requires" : {
+            "ExtUtils::MakeMaker" : "6.30"
+         }
+      },
+      "runtime" : {
+         "requires" : {
+            "App::Cmd::Setup" : "0.314",
+            "Carp" : 0,
+            "Cwd" : 0,
+            "DBIx::Class::Candy" : 0,
+            "DBIx::Class::ResultSet" : 0,
+            "DBIx::Class::Schema" : 0,
+            "DateTime" : 0,
+            "DateTime::Format::Natural" : 0,
+            "File::HomeDir" : 0,
+            "Graphics::ColorObject" : "v0.5.0",
+            "Image::ExifTool" : "8.75",
+            "Image::Magick" : 0,
+            "Math::Complex" : 0,
+            "SQL::Translator" : "0.11010",
+            "Scalar::Util" : 0,
+            "Sub::Exporter" : 0,
+            "base" : 0,
+            "strict" : 0,
+            "warnings" : 0
+         }
+      },
+      "test" : {
+         "requires" : {
+            "App::Cmd::Tester" : 0,
+            "File::Find" : 0,
+            "File::Temp" : 0,
+            "Test::More" : 0,
+            "Test::Number::Delta" : 0
+         }
+      }
+   },
+   "release_status" : "stable",
+   "version" : "0.001",
+   "x_authority" : "cpan:BPHILLIPS"
+}
+

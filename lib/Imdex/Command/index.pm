@@ -1,4 +1,10 @@
 package Imdex::Command::index;
+BEGIN {
+  $Imdex::Command::index::AUTHORITY = 'cpan:BPHILLIPS';
+}
+{
+  $Imdex::Command::index::VERSION = '0.001';
+}
 
 use strict;
 use warnings;
@@ -46,6 +52,18 @@ sub execute {
 
 1;
 
+
+__END__
+=pod
+
+=head1 NAME
+
+Imdex::Command::index - Adds images to the Imdex database
+
+=head1 VERSION
+
+version 0.001
+
 =head1 SYNOPSIS
 
 	% imdex index *.jpg # builds index in ~/.imdex.db
@@ -80,4 +98,16 @@ operation.
 
 =back
 
+=head1 AUTHOR
+
+Brian Phillips <bphillips@cpan.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2012 by Brian Phillips.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
 =cut
+

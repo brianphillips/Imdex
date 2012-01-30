@@ -1,4 +1,10 @@
 package Imdex::Indexer;
+BEGIN {
+  $Imdex::Indexer::AUTHORITY = 'cpan:BPHILLIPS';
+}
+{
+  $Imdex::Indexer::VERSION = '0.001';
+}
 
 # ABSTRACT: Inspects and indexes and image file
 
@@ -6,11 +12,6 @@ use Carp qw(croak);
 use Image::ExifTool 8.75 qw(:Public);
 use DateTime;
 
-=method new
-
-A standard constructor that requires a C<schema> attribute be passed in (see the C<SYNOPSIS>).
-
-=cut
 
 sub new {
 	my $class = shift;
@@ -19,21 +20,11 @@ sub new {
 	return bless { schema =>  $args{schema} };
 }
 
-=attr schema
-
-An L<Imdex::Schema> instance that will store the indexed information.
-
-=cut
 
 sub schema {
 	return shift->{schema};
 }
 
-=method index_file
-
-This method takes a filename and introspects the contents for image information.
-
-=cut
 
 sub index_file {
 	my $self = shift;
@@ -98,6 +89,18 @@ sub _find_tag_id {
 
 1;
 
+
+__END__
+=pod
+
+=head1 NAME
+
+Imdex::Indexer - Inspects and indexes and image file
+
+=head1 VERSION
+
+version 0.001
+
 =head1 SYNOPSIS
 
 	my $indexer = Imdex::Indexer->new( schema => $schema );
@@ -108,4 +111,32 @@ sub _find_tag_id {
 
 This class encompasses the indexing logic for the L<Imdex> application.
 
+=head1 ATTRIBUTES
+
+=head2 schema
+
+An L<Imdex::Schema> instance that will store the indexed information.
+
+=head1 METHODS
+
+=head2 new
+
+A standard constructor that requires a C<schema> attribute be passed in (see the C<SYNOPSIS>).
+
+=head2 index_file
+
+This method takes a filename and introspects the contents for image information.
+
+=head1 AUTHOR
+
+Brian Phillips <bphillips@cpan.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2012 by Brian Phillips.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
 =cut
+

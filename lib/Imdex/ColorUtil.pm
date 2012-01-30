@@ -1,4 +1,10 @@
 package Imdex::ColorUtil;
+BEGIN {
+  $Imdex::ColorUtil::AUTHORITY = 'cpan:BPHILLIPS';
+}
+{
+  $Imdex::ColorUtil::VERSION = '0.001';
+}
 
 # ABSTRACT: routines for dealing with colors
 
@@ -161,54 +167,24 @@ our %COLOR_NAMES = (
 	YellowGreen          => '9ACD32',
 );
 
-=func lab_difference
-
-Computes the differents (on a scale of 1-100) of two C<L*a*b*> color values passed in (as two array refs) using the CIEDE-2000 algorithm.
-
-=cut
 
 sub lab_difference {
 	my ( $lab1, $lab2 ) = @_;
 	return _lab_difference_perl( @$lab1, @$lab2 );
 }
 
-=func rgb255_difference
-
-Computes the differents (on a scale of 1-100) of two C<RGB> color values passed in (as two array refs) using the CIEDE-2000 algorithm.
-
-=cut
 
 sub rgb255_difference {
 	my ( $rgb1, $rgb2 ) = @_;
 	return _lab_difference_perl( map { @{ RGB_to_Lab( RGB255_to_RGB($_) ) } } $rgb1, $rgb2 );
 }
 
-=func rgbhex_difference
-
-Computes the differents (on a scale of 1-100) of two hexidecimal color values passed in using the CIEDE-2000 algorithm.
-
-=cut
 
 sub rgbhex_difference {
 	my ( $rgb1, $rgb2 ) = @_;
 	return _lab_difference_perl( map { @{ RGB_to_Lab( RGBhex_to_RGB($_) ) } } $rgb1, $rgb2 );
 }
 
-=func colors_for_file
-
-Returns the list of hashrefs containing the colors sorted by most common
-to least common.  The list of hashrefs that are returned has the following structure:
-
-	{
-		hex_color  => 'FF0000',    # hexidecimal RGB value
-		color_name => 'Red',       # canonical name for that color
-		weight     => '40'         # percentage of the picture that consists of this color
-	}
-
-Before calculating the different colors in the image, the image is
-resized a max height or width of 200px and quantized down to 12 colors.
-
-=cut
 
 sub colors_for_file {
 	my $file = shift;
@@ -243,13 +219,6 @@ sub colors_for_file {
 	return @histogram;
 }
 
-=func hex_color_name
-
-Returns the color name (based on the W3C list of HTML color names)
-that most closely reflects the hexidecimal value that is passed in.
-The comparison is based on the CIEDE-2000 color difference algorithm.
-
-=cut
 
 sub hex_color_name {
 	my $color = shift;
@@ -265,13 +234,6 @@ sub hex_color_name {
 	return $match;
 }
 
-=func color_name_hex
-
-Returns the hexidecimal value for the color name that is passed into the
-function.  The color name must be on the list of Web color names (see
-L<http://en.wikipedia.org/wiki/Web_colors#X11_color_names>).
-
-=cut
 
 sub color_name_hex {
 	my $name = shift;
@@ -416,6 +378,18 @@ sub _lab_difference_perl {
 
 1;
 
+
+__END__
+=pod
+
+=head1 NAME
+
+Imdex::ColorUtil - routines for dealing with colors
+
+=head1 VERSION
+
+version 0.001
+
 =head1 SYNOPSIS
 
 	use Imdex::ColorUtil qw(rgbhex_difference colors_for_file color_name_hex hex_color_name);
@@ -437,4 +411,56 @@ sub _lab_difference_perl {
 
 This library implements a few color-handling functions for Imdex.
 
+=head1 FUNCTIONS
+
+=head2 lab_difference
+
+Computes the differents (on a scale of 1-100) of two C<L*a*b*> color values passed in (as two array refs) using the CIEDE-2000 algorithm.
+
+=head2 rgb255_difference
+
+Computes the differents (on a scale of 1-100) of two C<RGB> color values passed in (as two array refs) using the CIEDE-2000 algorithm.
+
+=head2 rgbhex_difference
+
+Computes the differents (on a scale of 1-100) of two hexidecimal color values passed in using the CIEDE-2000 algorithm.
+
+=head2 colors_for_file
+
+Returns the list of hashrefs containing the colors sorted by most common
+to least common.  The list of hashrefs that are returned has the following structure:
+
+	{
+		hex_color  => 'FF0000',    # hexidecimal RGB value
+		color_name => 'Red',       # canonical name for that color
+		weight     => '40'         # percentage of the picture that consists of this color
+	}
+
+Before calculating the different colors in the image, the image is
+resized a max height or width of 200px and quantized down to 12 colors.
+
+=head2 hex_color_name
+
+Returns the color name (based on the W3C list of HTML color names)
+that most closely reflects the hexidecimal value that is passed in.
+The comparison is based on the CIEDE-2000 color difference algorithm.
+
+=head2 color_name_hex
+
+Returns the hexidecimal value for the color name that is passed into the
+function.  The color name must be on the list of Web color names (see
+L<http://en.wikipedia.org/wiki/Web_colors#X11_color_names>).
+
+=head1 AUTHOR
+
+Brian Phillips <bphillips@cpan.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2012 by Brian Phillips.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
 =cut
+

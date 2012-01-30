@@ -1,4 +1,10 @@
 package Imdex::Command::search;
+BEGIN {
+  $Imdex::Command::search::AUTHORITY = 'cpan:BPHILLIPS';
+}
+{
+  $Imdex::Command::search::VERSION = '0.001';
+}
 
 use strict;
 use warnings;
@@ -96,6 +102,18 @@ sub execute {
 
 1;
 
+
+__END__
+=pod
+
+=head1 NAME
+
+Imdex::Command::search - Searches images in the Imdex database
+
+=head1 VERSION
+
+version 0.001
+
 =head1 SYNOPSIS
 
 	# full-text search of caption/tags/names
@@ -162,4 +180,16 @@ different value on the command line.
 
 =back
 
+=head1 AUTHOR
+
+Brian Phillips <bphillips@cpan.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2012 by Brian Phillips.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
 =cut
+

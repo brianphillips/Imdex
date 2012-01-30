@@ -1,4 +1,10 @@
 package Imdex::Schema::Result::ImagePerson;
+BEGIN {
+  $Imdex::Schema::Result::ImagePerson::AUTHORITY = 'cpan:BPHILLIPS';
+}
+{
+  $Imdex::Schema::Result::ImagePerson::VERSION = '0.001';
+}
 
 # ABSTRACT: DBIC result class mapping an image to a person (many-to-many)
 
@@ -30,3 +36,28 @@ sub sqlt_deploy_hook {
 }
 
 1;
+
+__END__
+=pod
+
+=head1 NAME
+
+Imdex::Schema::Result::ImagePerson - DBIC result class mapping an image to a person (many-to-many)
+
+=head1 VERSION
+
+version 0.001
+
+=head1 AUTHOR
+
+Brian Phillips <bphillips@cpan.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2012 by Brian Phillips.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+=cut
+
